@@ -52,11 +52,11 @@ This repo is pre-configured for Render with [`render.yaml`](./render.yaml).
 3. Connect your GitHub repo and select this project.
 4. Render will create:
    - A web service (`employee-dashboard`)
-   - A persistent disk mounted at `/var/data`
-   - `DATABASE_PATH=/var/data/employees.db`
+   - `DATABASE_PATH=/tmp/employees.db` (free-tier compatible)
 5. After deploy completes, open the Render public URL.
 
 ### Notes
 
 - First startup will auto-seed at least 300 test records.
-- Because a Render disk is attached, your SQLite data persists across restarts/redeploys.
+- On Render free tier, local SQLite data is ephemeral and can reset after restarts/redeploys.
+- For persistent data, upgrade Render plan with disk support or move to managed Postgres.
