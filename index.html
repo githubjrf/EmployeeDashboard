@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+
+    <main class="shell">
+      <section class="headline-card reveal-up">
+        <div>
+          <p class="label">Workforce Management</p>
+          <h1>Employee Dashboard</h1>
+          <p class="subtitle">Manage your team records and review each employee profile details.</p>
+        </div>
+        <div class="meta-badge">
+          <span id="employee-count">0 Employees</span>
+        </div>
+      </section>
+
+      <section class="tabs-card reveal-up delay-1">
+        <div class="tabs" role="tablist" aria-label="Employee dashboard tabs">
+          <button id="tab-dashboard" class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-dashboard" type="button">
+            Employee Dashboard
+          </button>
+          <button id="tab-details" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-details" type="button">
+            Employee Details
+          </button>
+        </div>
+      </section>
+
+      <section id="panel-dashboard" class="tab-panel reveal-up delay-2" role="tabpanel" aria-labelledby="tab-dashboard">
+        <section class="toolbar">
+          <div class="search-wrap">
+            <input id="search-input" type="search" placeholder="Search by name, office, or position" />
+          </div>
+          <button id="add-employee-btn" class="btn primary">Add Employee</button>
+        </section>
+
+        <section class="table-card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Email</th>
+                  <th>Office</th>
+                  <th>Position</th>
+                  <th class="actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employee-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="pagination-card">
+          <div id="pagination-controls" class="pagination-controls"></div>
+        </section>
+      </section>
+
+      <section id="panel-details" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-details">
+        <section class="details-card">
+          <header class="details-header">
+            <div>
+              <p class="label">Employee Profile</p>
+              <h2 id="detail-employee-name">Select an employee</h2>
+              <p id="detail-employee-subtitle" class="subtitle">Click More Details on the dashboard tab to view an employee profile.</p>
+            </div>
+          </header>
+
+          <form id="details-form" class="details-grid">
+            <label>
+              Job Site Location
+              <input name="job_site_location" type="text" required />
+            </label>
+            <label>
+              Role
+              <input name="role" type="text" required />
+            </label>
+            <label>
+              Social Security Number
+              <input name="social_security_number" type="text" required />
+            </label>
+            <label>
+              Employee Start Date
+              <input name="employee_start_date" type="date" required />
+            </label>
+            <label>
+              Beneficiary
+              <input name="beneficiary" type="text" required />
+            </label>
+            <label>
+              Salary
+              <input name="salary" type="number" min="0" step="0.01" required />
+            </label>
+
+            <div class="details-actions">
+              <button id="back-to-dashboard" type="button" class="btn ghost">Back to Dashboard</button>
+              <button type="submit" class="btn primary">Save Details</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <dialog id="employee-modal">
+      <form id="employee-form" method="dialog" class="modal-form">
+        <h2>Add Employee</h2>
+
+        <label>
+          Name
+          <input name="name" type="text" required />
+        </label>
+
+        <label>
+          Phone Number
+          <input name="phone" type="text" required />
+        </label>
+
+        <label>
+          Email
+          <input name="email" type="email" required />
+        </label>
+
+        <label>
+          Office
+          <input name="office" type="text" required />
+        </label>
+
+        <label>
+          Position
+          <input name="position" type="text" required />
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="cancel-modal" class="btn ghost">Cancel</button>
+          <button type="submit" class="btn primary">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="employee-row-template">
+      <tr>
+        <td data-field="name"></td>
+        <td data-field="phone"></td>
+        <td data-field="email"></td>
+        <td data-field="office"></td>
+        <td data-field="position"></td>
+        <td>
+          <div class="row-actions">
+            <button class="btn small details">More Details</button>
+            <button class="btn small edit">Edit</button>
+            <button class="btn small save hidden">Save</button>
+            <button class="btn small ghost cancel hidden">Cancel</button>
+            <button class="btn small danger delete">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

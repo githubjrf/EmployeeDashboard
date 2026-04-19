@@ -1,0 +1,16 @@
+﻿services:
+  - type: web
+    name: employee-dashboard
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PATH
+        value: /var/data/employees.db
+    disk:
+      name: employee-data
+      mountPath: /var/data
+      sizeGB: 1
